@@ -19,6 +19,8 @@ The resulting datasets:
 To run the script, just download and run
 > source('run_analysis.R')
 
+**Note**: I don't have a non-Windows machine to test this on, and I'm not 100% sure that the downloading step will > work on all systems. To do that step manually, just download the dataset to the working directory and rename it to **dataset.zip**.
+
 The script runs the following steps:
 
 0. Set up prerequisites
