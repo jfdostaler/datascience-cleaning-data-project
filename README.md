@@ -45,7 +45,14 @@ The script runs the following steps:
   2. Use **mutate()** from the *dplyr* package to replace the numeric values of the Activity column with their text description
   
 4. Set descriptive variable names
-  1. Set the names for the dataset (see the code book for a reference)
+  1. Keep the names from features.txt (see codebook), already applied above
+    * The original feature names work well
+    * Without being more familiar with the experiment and data, it would be hard to improve on the naming scheme
+    * The names already capture a lot of information about the variables:
+      * Whether they're time-domain or frequency-domain
+      * Which sensor the measurement comes from
+      * Axis of movement (when relevant)
+      * Other calculations performed on the data (i.e. vector magnitude)
   
 5. Create a summarized data set
   1. Use the **summarise_each()** function to calculate the mean for each numeric variable
