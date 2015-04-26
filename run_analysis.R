@@ -57,11 +57,11 @@ dt <- data.table(rbind(testdata, traindata))
 message('Setting column names')
 colnames <- fread('features.txt')$V2
 setnames(dt, c("Subject", "Activity", colnames))
+setkey(dt, Subject, Activity)
 
 activitynames <- fread('activity_labels.txt')$V2
 
 #2. Extract only columns that contain the mean and standard deviation
-setkey(dt, Subject, Activity)
 #dt <- dt[, c(1:2, grep("-(std|mean)\\(\\)", names(dt))), with=FALSE]
 tidyData <- dt %>%
   select(Subject, Activity, matches("-(std|mean)\\(\\)")) %>%
@@ -69,6 +69,7 @@ tidyData <- dt %>%
   group_by(Subject, Activity)
 
 #4. Give descriptive column names
+# This is already done above. We're using the column names from features.txt
 
 #5. Aggregate by activity/subject
 message('Calculating means')
