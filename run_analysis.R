@@ -1,7 +1,9 @@
 ## run_analysis.R
 ## author: JF Dostaler
 ##
-## Creates a tidy dataset from 
+## Coursera - Getting and Cleaning Data - Course Project
+## Creates a tidy dataset from the "Human Activity Recognition Using Smartphones" Data Set
+## Source: http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
 
 # Constants
 URL <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
