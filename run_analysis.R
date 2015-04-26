@@ -1,8 +1,15 @@
+## run_analysis.R
+## author: JF Dostaler
+##
+## Creates a tidy dataset from 
 
+# Constants
+URL <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+DESTFILE <- "dataset.zip"
 
-# Save original working directory
+# We'll want to easily navigate the zip file by changing the working directory
+# Save the original working directory so we can revert to it at the end of the script
 origwd <- getwd()
-
 
 # Install and load required packages if necessary
 loadPackage <- function (pkg) {
@@ -16,10 +23,7 @@ loadPackage('data.table')
 loadPackage('dplyr')
 
 
-# Download the dataset if it's not in the working directory
-URL <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
-DESTFILE <- "dataset.zip"
-
+# Download the dataset (if it's not already in the working directory)
 if (!DESTFILE %in% dir()) {
   message("Downloading data from: " , URL)
   download.file(url = URL, destfile = "dataset.zip", method = "auto", mode = "wb")
@@ -62,7 +66,6 @@ setkey(dt, Subject, Activity)
 activitynames <- fread('activity_labels.txt')$V2
 
 #2. Extract only columns that contain the mean and standard deviation
-#dt <- dt[, c(1:2, grep("-(std|mean)\\(\\)", names(dt))), with=FALSE]
 tidyData <- dt %>%
   select(Subject, Activity, matches("-(std|mean)\\(\\)")) %>%
   mutate(Activity = activitynames[Activity]) %>%
